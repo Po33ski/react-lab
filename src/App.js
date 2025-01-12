@@ -1,4 +1,5 @@
 import './App.css';
+import "milligram";
 import {useState} from "react";
 
 const movies = [
@@ -29,12 +30,12 @@ else if (title.lenght < 15){
 }
   return (
       <div>
+        <h1>My favourite movies to watch</h1>
         <div>
         <ul>
             {movies.map((movie) => <li key={movie.title}>{movie.title}</li>)}
         </ul>
         </div>
-          <h1>My favourite movies to watch</h1>
           <h2>My favourite movie for today is {title}</h2>
             {title.length > 0 && <div>{message}</div>}
           <div>
