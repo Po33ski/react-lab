@@ -2,9 +2,11 @@ import './App.css';
 import "milligram";
 import {useState} from "react";
 import MovieForm from "./MovieForm";
+import MoviesList from './MoviesList';
 
 
 function App() {
+  const [addMovieIsClicked, setAddMovieIsClicked] = useState(true);
   const [movies, setMovies] = useState([ 
     {title: "Wall-E",
       year: 2000
@@ -24,12 +26,17 @@ function App() {
     <div>
         <h1>My favourite movies to watch</h1>
      <div>
-        <h1>Titles</h1>
-        <ul>
-          {movies.map((movie) => <li key={movie.title}>{movie.title}</li>)}
-        </ul>
+      <MoviesList movies={movies}/>
+        <div>
+        {addMovieIsClicked ? 
+          <button onClick={(addMovieIsClicked)=>{setAddMovieIsClicked(!addMovieIsClicked)}}>I want add movie</button> :
+          <MovieForm onMovieSubmit={(movie) => setMovies([...movies, movie])} 
+          buttonLabel="Add movie" 
+          isClicked={(addMovieIsClicked)=>{setAddMovieIsClicked(!addMovieIsClicked)}}
+          />
+          }
+        </div>
     </div>
-        <MovieForm onMovieSubmit={(movie) => setMovies([...movies, movie])}/>
     </div>
   );
 }

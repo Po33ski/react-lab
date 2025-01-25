@@ -8,14 +8,14 @@ const [year, setYear] = useState('');
 
     function addMovie(event) {
         event.preventDefault();
-        if (title.length < 5) {
+        if (title.length < 4) {
             return alert('Tytuł jest za krótki');
         }
         props.onMovieSubmit({title, year});
+        props.isClicked()
         setTitle('');
         setYear('');
     }
-
 
     return <form onSubmit={addMovie}>
 
@@ -28,6 +28,6 @@ const [year, setYear] = useState('');
             <label>Rok nagrania</label>
             <input type="text" value={year} onChange={(event) => setYear(event.target.value)}/>
         </div>
-        <button>Add a movie</button>
+        <button>{props.buttonLabel || 'Submit'}</button>
     </form>;
 }
